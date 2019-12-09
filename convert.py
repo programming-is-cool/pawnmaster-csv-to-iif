@@ -14,11 +14,11 @@ def main(input_file_name):
         trans_num = 0
 
         for trans in csv_reader:
-            trans_date = trans.get("Date")
-            trans_account = trans.get("Account")
-            trans_memo = trans.get("Memo")
-            trans_amount = trans.get("Amount")
-
+            trans_date = trans.get("glh_date").split(None, 1)[0]
+            trans_account = trans.get("gld_acct_posted")
+            trans_memo = trans.get("glh_reference")
+            trans_amount = trans.get("gld_amt")
+            
             if last_date_processed != trans_date:
                 if last_date_processed is not None:
                     with open(f'general_ledger_{ trans_num }.iif', mode='a', newline='') as output_file:
